@@ -1,0 +1,20 @@
+@use 'tailwind';
+@use 'layout';
+
+html {
+  // 搭配 postcss 配置
+  // 100vw = 375 => 10vw = 37.5
+  font-size: 10vw;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  // 全局禁用选择
+  user-select: none;
+}
+
+body {
+  @apply bg-gray-100;
+}
