@@ -12,6 +12,7 @@
     "src/**/__tests__/*"
   ],
   "compilerOptions": {
+    "verbatimModuleSyntax": true,
     "composite": true,
     "baseUrl": ".",
     "paths": {
