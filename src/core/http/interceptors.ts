@@ -1,6 +1,7 @@
 import axios, { type AxiosResponse } from 'axios'
 import { UnauthorizedError } from './error'
 import { HttpErrorStream } from './event'
+import type { HttpResponse } from './types'
 
 export function handleBusinessError(res: AxiosResponse) {
   const { code } = res.data
@@ -20,8 +21,12 @@ export function handleRejection(err: any) {
   }
 
   if (err.data) {
-    const { data } = err as AxiosResponse
-    HttpErrorStream.next(new Error(data.msg))
+    const { data } = err as AxiosResponse<HttpResponse<null>>
+    const { msg, code } = data
+    HttpErrorStream.next(new Error(msg || code.toString()))
+  } else if (err.response) {
+    const { msg, code } = err.response.data as HttpResponse<null>
+    HttpErrorStream.next(new Error(msg || code.toString()))
   } else if (err.request) {
     HttpErrorStream.next(new Error('服务器未响应'))
   } else if (err instanceof Error) {
