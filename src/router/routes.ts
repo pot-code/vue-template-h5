@@ -13,6 +13,12 @@ declare module 'vue-router' {
   }
 }
 
+// 页签视图
+export const tabs: RouteRecordRaw[] = []
+
+// 子视图
+export const subs: RouteRecordRaw[] = []
+
 export const routes: RouteRecordRaw[] = [
   {
     path: '/',

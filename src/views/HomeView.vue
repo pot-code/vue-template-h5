@@ -19,7 +19,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="h-full flex flex-col items-center justify-center">
-    <svg-icon name="heart" />
+    <local-icon name="heart" />
     <h1 class="text-base">Hello H5</h1>
   </div>
 </template>

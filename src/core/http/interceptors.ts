@@ -1,9 +1,9 @@
-import { DEFAULT_PAGINATION_SIZE } from '@/config/pagination'
 import { useUserStore } from '@/features/auth/useUserStore'
 import axios, { type AxiosResponse, type InternalAxiosRequestConfig } from 'axios'
 import { isNil } from 'lodash-es'
 import { showNotify } from 'vant'
 import { defaultTokenStorage } from '../token/storage'
+import { DEFAULT_PAGINATION_SIZE } from './config'
 
 export function appendAuthHeader(config: InternalAxiosRequestConfig) {
   const { headers } = config

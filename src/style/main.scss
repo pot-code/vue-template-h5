@@ -1,4 +1,3 @@
-@use 'tailwind';
 @use 'layout';
 
 html {
@@ -13,8 +12,4 @@ body,
   height: 100%;
   // 全局禁用选择
   user-select: none;
-}
-
-body {
-  @apply bg-gray-100;
 }

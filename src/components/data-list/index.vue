@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { PAGE_BOTTOM_TEXT } from '@/config/page'
 import useLoadMore from '@/hooks/useLoadMore'
 import useRefresh from '@/hooks/useRefresh'
 import { isEmpty } from 'lodash-es'
+
+const PAGE_BOTTOM_TEXT = '-已经到底了-'
 
 const emit = defineEmits(['load-more', 'refresh'])
 
@@ -46,7 +47,6 @@ function onRefresh() {
   <div v-else class="p-2" ref="listRef">
     <van-pull-refresh class="min-h-full" v-model="refresh" success-text="刷新成功">
       <van-list
-        class="space-y-2"
         v-model:loading="loadMore"
         :finished-text="PAGE_BOTTOM_TEXT"
         :finished="finished"

@@ -1,5 +1,5 @@
-import { client } from '@/lib/http/axios'
-import { LoginPayload } from './types'
+import { client } from '@/core/http/axios'
+import type { LoginPayload } from './types'
 
 export const authApi = {
   login(payload: LoginPayload) {

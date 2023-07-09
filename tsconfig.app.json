@@ -1,9 +1,7 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": [
-    "env.d.ts",
-    "auto-imports.d.ts",
-    "components.d.ts",
+    "*.d.ts",
     "src/**/*",
     "src/**/*.vue",
     "mock"
@@ -13,6 +11,7 @@
   ],
   "compilerOptions": {
     "verbatimModuleSyntax": true,
+    "ignoreDeprecations": "5.0",
     "composite": true,
     "baseUrl": ".",
     "paths": {

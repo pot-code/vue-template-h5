@@ -16,3 +16,10 @@ const icon = computed(() => {
 <template>
   <component :is="icon" class="icon" />
 </template>
+
+<style scoped>
+.icon {
+  height: 24px;
+  width: 24px;
+}
+</style>
