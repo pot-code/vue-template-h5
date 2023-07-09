@@ -1,5 +1,6 @@
 import HomeViewVue from '@/views/HomeView.vue'
 import LoginViewVue from '@/views/LoginView.vue'
+import AuthGuard from '@/features/auth/AuthGuard.vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 declare module 'vue-router' {
@@ -10,6 +11,7 @@ declare module 'vue-router' {
     backwards: boolean
     // tab 标题
     tab?: string
+    // tab 图标
     icon?: string
   }
 }
@@ -23,8 +25,14 @@ export const subs: RouteRecordRaw[] = []
 export const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'home',
-    component: HomeViewVue,
+    component: AuthGuard,
+    children: [
+      {
+        path: 'home',
+        name: 'home',
+        component: HomeViewVue,
+      },
+    ],
   },
   {
     path: '/login',

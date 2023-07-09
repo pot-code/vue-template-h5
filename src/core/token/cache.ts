@@ -1,6 +1,6 @@
-import type { Storage } from '@/core/storage/types'
+import type { Storage } from '../storage/types'
 
-export class TokenStorage {
+export default class TokenCache {
   constructor(
     private tokenName: string,
     private storage: Storage,

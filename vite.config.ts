@@ -40,8 +40,7 @@ export default defineConfig({
     }),
     viteVConsole({
       entry: path.resolve('src/main.ts'), // or you can use entry: [path.resolve('src/main.ts')]
-      localEnabled: true,
-      enabled: true,
+      enabled: false,
     }),
     Icons({
       scale: 1,

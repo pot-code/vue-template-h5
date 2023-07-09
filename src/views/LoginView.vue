@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import logo from '@/assets/images/sg-logo.png'
 import type { LoginPayload } from '@/features/auth/types'
 import useAuth from '@/features/auth/useAuth'
 
@@ -42,9 +41,6 @@ function onSubmit() {
         <van-button block round :disabled="isLoggingIn" type="primary" native-type="submit">登录</van-button>
       </div>
     </van-form>
-    <div>
-      <img class="h-4 m-auto" :src="logo" />
-    </div>
   </div>
   <van-toast :show="isLoggingIn" forbid-click type="loading" message="登录中..." loading-type="circular" />
 </template>

@@ -1,4 +1,4 @@
-import type { HttpPaginationResponse } from '@/core/http/types'
+import type { HttpPaginationResponse } from '@/core/http/pagination'
 import type { InfiniteData } from '@tanstack/vue-query'
 import { flatten } from 'lodash-es'
 import { computed, type Ref } from 'vue'
