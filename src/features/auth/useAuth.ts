@@ -4,13 +4,15 @@ import { authApi } from './api'
 import type { LoginPayload } from './types'
 
 export default function useAuth() {
-  const router = useRouter()
   const { token, setToken, clearToken } = useTokenStore()
-  const { mutate: loginMutate, isLoading: isLoggingIn } = useMutation(authApi.login, {
+  const {
+    mutate: loginMutate,
+    isLoading: isLoggingIn,
+    isSuccess: isLoginSuccess,
+  } = useMutation(authApi.login, {
     onSuccess({ data: { data } }) {
       if (data) {
         setToken(data.token)
-        router.push({ name: 'home' })
       }
     },
   })
@@ -31,6 +33,7 @@ export default function useAuth() {
   return {
     isLoggingIn,
     isLoggingOut,
+    isLoginSuccess,
     token,
     login,
     logout,
