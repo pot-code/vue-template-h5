@@ -5,14 +5,15 @@ import type { RouteRecordRaw } from 'vue-router'
 
 declare module 'vue-router' {
   interface RouteMeta {
-    // 导航标题
+    /** 导航标题 */
     title?: string
-    // 是否支持返回上一页
+    /** 是否在导航栏显示返回按钮 */
     backwards?: boolean
-    // tab 标题
+    /** tab 标题 */
     tab?: string
-    // tab 图标
+    /** tab 图标 */
     icon?: string
+    /** 是否需要登录 */
     requireAuth?: boolean
   }
 }
