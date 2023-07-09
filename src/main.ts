@@ -23,10 +23,10 @@ app.use(VueQueryPlugin, {
     },
   },
 })
-app.use(router)
 
 app.directive('scroll', scroll)
 
 setup().then(() => {
+  app.use(router)
   app.mount('#app')
 })

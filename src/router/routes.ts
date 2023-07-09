@@ -1,18 +1,18 @@
 import HomeViewVue from '@/views/HomeView.vue'
 import LoginViewVue from '@/views/LoginView.vue'
-import AuthGuard from '@/features/auth/AuthGuard.vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 declare module 'vue-router' {
   interface RouteMeta {
     // 首部标题
-    title: string
+    title?: string
     // 是否支持返回上一页
-    backwards: boolean
+    backwards?: boolean
     // tab 标题
     tab?: string
     // tab 图标
     icon?: string
+    requireAuth?: boolean
   }
 }
 
@@ -25,12 +25,15 @@ export const subs: RouteRecordRaw[] = []
 export const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: AuthGuard,
     children: [
       {
         path: 'home',
         name: 'home',
         component: HomeViewVue,
+        meta: {
+          title: '',
+          requireAuth: true,
+        },
       },
     ],
   },

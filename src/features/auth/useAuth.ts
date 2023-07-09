@@ -1,8 +1,7 @@
-import { useMutation } from '@tanstack/vue-query'
 import useTokenStore from '@/store/useTokenStore'
+import { useMutation } from '@tanstack/vue-query'
 import { authApi } from './api'
 import type { LoginPayload } from './types'
-import { isNil } from 'lodash-es'
 
 export default function useAuth() {
   const router = useRouter()
@@ -20,7 +19,6 @@ export default function useAuth() {
       clearToken()
     },
   })
-  const isAuthenticated = computed(() => !isNil(token))
 
   function login(payload: LoginPayload) {
     loginMutate(payload)
@@ -33,7 +31,6 @@ export default function useAuth() {
   return {
     isLoggingIn,
     isLoggingOut,
-    isAuthenticated,
     token,
     login,
     logout,

@@ -7,6 +7,7 @@ const tokenCache = new TokenCache('app-token', new LocalStorage())
 
 export const useTokenStore = defineStore('token', () => {
   const token = ref<string>()
+  const isAuthenticated = computed(() => !isNil(token.value))
 
   function setToken(data: string) {
     token.value = data
@@ -26,6 +27,7 @@ export const useTokenStore = defineStore('token', () => {
   }
 
   return {
+    isAuthenticated,
     token,
     setToken,
     clearToken,
