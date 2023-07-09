@@ -5,11 +5,11 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import setup from './setup'
+import scroll from './directives/scroll'
 
 import './styles/main.scss'
 import 'vant/lib/index.css'
 import 'virtual:uno.css'
-import scroll from './directives/scroll'
 
 const app = createApp(App)
 

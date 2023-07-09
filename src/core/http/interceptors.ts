@@ -19,9 +19,9 @@ export function handleRejection(err: any) {
     return
   }
 
-  if (err.response) {
-    const { msg } = err.response.data
-    HttpErrorStream.next(new Error(msg))
+  if (err.data) {
+    const { data } = err as AxiosResponse
+    HttpErrorStream.next(new Error(data.msg))
   } else if (err.request) {
     HttpErrorStream.next(new Error('服务器未响应'))
   } else if (err instanceof Error) {
