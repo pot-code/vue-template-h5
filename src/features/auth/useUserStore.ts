@@ -1,11 +1,11 @@
 import { defineStore } from 'pinia'
-import type { UserInfoModel } from './types'
+import type { UserLoginData } from './types'
 
 export const useUserStore = defineStore('user', () => {
-  const user = ref<UserInfoModel>()
+  const user = ref<UserLoginData>()
   const isAuthenticated = computed(() => !!user.value)
 
-  function login(vo: UserInfoModel) {
+  function login(vo: UserLoginData) {
     user.value = vo
   }
 

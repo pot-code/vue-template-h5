@@ -11,7 +11,7 @@ export default function useRefresh(isFetching: Ref<boolean>, onRefresh: () => vo
     () => isFetching.value,
     (v) => {
       if (!v) refresh.value = false
-    }
+    },
   )
 
   return { refresh }

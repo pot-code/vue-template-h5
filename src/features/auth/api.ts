@@ -1,8 +1,8 @@
-import { client } from '@/core/http/axios'
-import type { LoginPayload } from './types'
+import http from '@/core/http'
+import type { LoginPayload, UserLoginData } from './types'
 
 export const authApi = {
   login(payload: LoginPayload) {
-    return client.post('/auth/login', payload)
+    return http.post<UserLoginData>('/auth/login', payload)
   },
 }

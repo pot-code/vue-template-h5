@@ -3,8 +3,8 @@ export interface LoginPayload {
   password: string
 }
 
-export interface UserInfoModel {
+export interface UserLoginData {
   username: string
   roles: string[]
-  permissions: string[]
+  token: string
 }

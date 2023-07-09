@@ -1,4 +1,5 @@
 import HomeViewVue from '@/views/HomeView.vue'
+import LoginViewVue from '@/views/LoginView.vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 declare module 'vue-router' {
@@ -24,5 +25,10 @@ export const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'home',
     component: HomeViewVue,
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginViewVue,
   },
 ]

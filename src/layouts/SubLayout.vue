@@ -10,12 +10,7 @@ function goBack() {
 </script>
 
 <template>
-  <van-nav-bar
-    fixed
-    :left-arrow="route.meta.backwards"
-    :title="route.meta.title"
-    @click-left="goBack"
-  />
+  <van-nav-bar fixed :left-arrow="route.meta.backwards" :title="route.meta.title" @click-left="goBack" />
   <div class="sub-view-container">
     <div class="view">
       <router-view />

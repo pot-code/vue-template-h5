@@ -7,7 +7,7 @@ export default function useLoadMore(isLoading: Ref<boolean>, onLoadMore: () => v
     () => isLoading.value,
     (v) => {
       loadMore.value = v
-    }
+    },
   )
 
   watch(loadMore, (v) => {

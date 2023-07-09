@@ -21,7 +21,7 @@ const props = withDefaults(
   }>(),
   {
     loading: true,
-  }
+  },
 )
 
 const { loadMore } = useLoadMore(toRef(props, 'loading'), onLoadMore)
@@ -46,12 +46,7 @@ function onRefresh() {
   <van-empty v-if="noData" description="无数据" />
   <div v-else class="p-2" ref="listRef">
     <van-pull-refresh class="min-h-full" v-model="refresh" success-text="刷新成功">
-      <van-list
-        v-model:loading="loadMore"
-        :finished-text="PAGE_BOTTOM_TEXT"
-        :finished="finished"
-        :offset="32"
-      >
+      <van-list v-model:loading="loadMore" :finished-text="PAGE_BOTTOM_TEXT" :finished="finished" :offset="32">
         <slot name="list" />
       </van-list>
     </van-pull-refresh>

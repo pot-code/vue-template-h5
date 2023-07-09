@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import logo from '@/assets/images/sg-logo.png'
+import { defaultTokenStorage } from '@/core/token/storage'
 import { authApi } from '@/features/auth/api'
 import type { LoginPayload } from '@/features/auth/types'
-import { defaultTokenStorage } from '@/lib/token/storage'
 import { useMutation } from '@tanstack/vue-query'
 
 const formData = reactive<LoginPayload>({
@@ -34,7 +34,7 @@ function onSubmit() {
         :rules="[{ required: true, message: '用户名必填' }]"
       >
         <template #left-icon>
-          <svg-icon name="username" />
+          <local-icon name="username" />
         </template>
       </van-field>
       <van-field
@@ -45,24 +45,17 @@ function onSubmit() {
         :rules="[{ required: true, message: '密码必填' }]"
       >
         <template #left-icon>
-          <svg-icon name="password" />
+          <local-icon name="password" />
         </template>
       </van-field>
       <div class="p-6">
-        <van-button block round :disabled="isLoading" type="primary" native-type="submit">
-          登录
-        </van-button>
+        <van-button block round :disabled="isLoading" type="primary" native-type="submit"> 登录 </van-button>
       </div>
     </van-form>
     <div>
       <img class="h-4 m-auto" :src="logo" />
     </div>
   </div>
-  <van-toast
-    :show="isLoading"
-    forbid-click
-    type="loading"
-    message="登录中..."
-    loading-type="circular"
-  />
+  <van-toast :show="isLoading" forbid-click type="loading" message="登录中..." loading-type="circular" />
 </template>
+@/core/storage/storage
