@@ -3,15 +3,15 @@ import type { DirectiveBinding } from 'vue'
 const scrollMap = new Map<string, number>()
 
 // 保存滚动条位置
-const vScroll = {
+const scroll = {
   mounted(el: HTMLElement, binding: DirectiveBinding<string>) {
-    const scrollId = binding.value
-    if (scrollMap.has(scrollId)) {
+    const id = binding.value
+    if (scrollMap.has(id)) {
       nextTick(() => {
-        el.scrollTo({ top: scrollMap.get(scrollId) })
+        el.scrollTo({ top: scrollMap.get(id) })
       })
     } else {
-      scrollMap.set(scrollId, 0)
+      scrollMap.set(id, 0)
     }
   },
   beforeUnmount(el: HTMLElement, binding: DirectiveBinding<string>) {
@@ -20,4 +20,4 @@ const vScroll = {
   },
 }
 
-export default vScroll
+export default scroll

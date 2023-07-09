@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/vue-query'
-import useTokenStore from '../../store/useTokenStore'
+import useTokenStore from '@/store/useTokenStore'
 import { authApi } from './api'
 import type { LoginPayload } from './types'
 import { isNil } from 'lodash-es'
