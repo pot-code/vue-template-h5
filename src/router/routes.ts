@@ -24,9 +24,31 @@ export const tabs: RouteRecordRaw[] = [
     name: 'home',
     component: HomeViewVue,
     meta: {
-      title: '首页',
+      title: 'Home',
       icon: 'heart',
-      tab: '首页',
+      tab: 'made',
+      requireAuth: true,
+    },
+  },
+  {
+    path: 'home',
+    name: 'home',
+    component: HomeViewVue,
+    meta: {
+      title: 'Home',
+      icon: 'heart',
+      tab: 'with',
+      requireAuth: true,
+    },
+  },
+  {
+    path: 'home',
+    name: 'home',
+    component: HomeViewVue,
+    meta: {
+      title: 'Home',
+      icon: 'heart',
+      tab: 'love',
       requireAuth: true,
     },
   },
