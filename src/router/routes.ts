@@ -1,10 +1,11 @@
 import HomeViewVue from '@/views/HomeView.vue'
 import LoginViewVue from '@/views/LoginView.vue'
+import TabLayout from '@/layouts/TabLayout.vue'
 import type { RouteRecordRaw } from 'vue-router'
 
 declare module 'vue-router' {
   interface RouteMeta {
-    // 首部标题
+    // 导航标题
     title?: string
     // 是否支持返回上一页
     backwards?: boolean
@@ -17,25 +18,28 @@ declare module 'vue-router' {
 }
 
 // 页签视图
-export const tabs: RouteRecordRaw[] = []
+export const tabs: RouteRecordRaw[] = [
+  {
+    path: 'home',
+    name: 'home',
+    component: HomeViewVue,
+    meta: {
+      title: '首页',
+      icon: 'heart',
+      tab: '首页',
+      requireAuth: true,
+    },
+  },
+]
 
 // 子视图
 export const subs: RouteRecordRaw[] = []
 
 export const routes: RouteRecordRaw[] = [
   {
-    path: '/',
-    children: [
-      {
-        path: 'home',
-        name: 'home',
-        component: HomeViewVue,
-        meta: {
-          title: '',
-          requireAuth: true,
-        },
-      },
-    ],
+    path: '/tab',
+    component: TabLayout,
+    children: tabs,
   },
   {
     path: '/login',
