@@ -4,24 +4,25 @@ import { createApp } from 'vue'
 
 import App from './App.vue'
 import router from './router'
-import { setup } from './setup'
+import setup from './setup'
 
 import './style/main.scss'
 import 'vant/lib/index.css'
 import 'virtual:uno.css'
 
-setup().then(() => {
-  const app = createApp(App)
-  app.use(createPinia())
-  app.use(VueQueryPlugin, {
-    queryClientConfig: {
-      defaultOptions: {
-        queries: {
-          refetchOnWindowFocus: false,
-        },
+const app = createApp(App)
+app.use(createPinia())
+app.use(VueQueryPlugin, {
+  queryClientConfig: {
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
       },
     },
-  })
-  app.use(router)
+  },
+})
+app.use(router)
+
+setup().then(() => {
   app.mount('#app')
 })

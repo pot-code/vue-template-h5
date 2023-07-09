@@ -1,4 +1,4 @@
-export async function setup() {
+export default async function setup() {
   await installMockService()
 }
 

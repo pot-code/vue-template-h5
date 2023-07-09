@@ -1,26 +1,16 @@
 <script setup lang="ts">
 import logo from '@/assets/images/sg-logo.png'
-import { defaultTokenStorage } from '@/core/token/storage'
-import { authApi } from '@/features/auth/api'
 import type { LoginPayload } from '@/features/auth/types'
-import { useMutation } from '@tanstack/vue-query'
+import useAuth from '@/features/auth/useAuth'
 
 const formData = reactive<LoginPayload>({
   username: '',
   password: '',
 })
-const router = useRouter()
-const { mutate, isLoading } = useMutation(authApi.login)
+const { login, isLoggingIn } = useAuth()
 
 function onSubmit() {
-  mutate(formData, {
-    onSuccess({ data }) {
-      if (data) {
-        defaultTokenStorage.save(data.access_token)
-        router.replace({ name: 'home' })
-      }
-    },
-  })
+  login(toRaw(formData))
 }
 </script>
 
@@ -49,13 +39,12 @@ function onSubmit() {
         </template>
       </van-field>
       <div class="p-6">
-        <van-button block round :disabled="isLoading" type="primary" native-type="submit"> 登录 </van-button>
+        <van-button block round :disabled="isLoggingIn" type="primary" native-type="submit">登录</van-button>
       </div>
     </van-form>
     <div>
       <img class="h-4 m-auto" :src="logo" />
     </div>
   </div>
-  <van-toast :show="isLoading" forbid-click type="loading" message="登录中..." loading-type="circular" />
+  <van-toast :show="isLoggingIn" forbid-click type="loading" message="登录中..." loading-type="circular" />
 </template>
-@/core/storage/storage
