@@ -27,7 +27,6 @@ export const tabs: RouteRecordRaw[] = [
       title: 'Home',
       icon: 'heart',
       tab: 'made',
-      requireAuth: true,
     },
   },
   {
@@ -38,7 +37,6 @@ export const tabs: RouteRecordRaw[] = [
       title: 'Home',
       icon: 'heart',
       tab: 'with',
-      requireAuth: true,
     },
   },
   {
@@ -49,7 +47,6 @@ export const tabs: RouteRecordRaw[] = [
       title: 'Home',
       icon: 'heart',
       tab: 'love',
-      requireAuth: true,
     },
   },
 ]
@@ -61,6 +58,9 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/tab',
     component: TabLayout,
+    meta: {
+      requireAuth: true,
+    },
     children: tabs,
   },
   {
