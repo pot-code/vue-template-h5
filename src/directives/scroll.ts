@@ -3,7 +3,7 @@ import type { DirectiveBinding } from 'vue'
 const scrollMap = new Map<string, number>()
 
 // 保存滚动条位置
-const scroll = {
+export default {
   mounted(el: HTMLElement, binding: DirectiveBinding<string>) {
     const id = binding.value
     if (scrollMap.has(id)) {
@@ -19,5 +19,3 @@ const scroll = {
     scrollMap.set(scrollId, el.scrollTop)
   },
 }
-
-export default scroll

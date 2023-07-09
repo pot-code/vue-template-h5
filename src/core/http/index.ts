@@ -5,7 +5,6 @@ const http = axios.create({
   baseURL: import.meta.env.VITE_ENDPOINT,
 })
 
-http.interceptors.response.use(handleBusinessError)
-http.interceptors.response.use(null, handleRejection)
+http.interceptors.response.use(handleBusinessError, handleRejection)
 
 export default http
