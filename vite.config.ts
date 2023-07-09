@@ -1,17 +1,17 @@
 import { fileURLToPath, URL } from 'node:url'
-
+import path from 'node:path'
 import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import path from 'node:path'
+import VueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
-import { VantResolver } from 'unplugin-vue-components/resolvers'
+import UnoCSS from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
+import SvgLoader from 'vite-svg-loader'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
 import { defineConfig } from 'vite'
 import { viteVConsole } from 'vite-plugin-vconsole'
-import svgLoader from 'vite-svg-loader'
 
 const buildTarget = ['Chrome 64']
 
@@ -22,7 +22,8 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    vueJsx(),
+    VueJsx(),
+    UnoCSS(),
     Components({
       resolvers: [VantResolver(), IconsResolver()],
     }),
@@ -46,7 +47,7 @@ export default defineConfig({
       scale: 1,
       defaultClass: 'icon',
     }),
-    svgLoader({
+    SvgLoader({
       svgoConfig: {
         plugins: [
           {

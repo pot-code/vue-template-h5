@@ -8,6 +8,7 @@ import { setup } from './setup'
 
 import './style/main.scss'
 import 'vant/lib/index.css'
+import 'virtual:uno.css'
 
 setup().then(() => {
   const app = createApp(App)
