@@ -2,6 +2,7 @@ import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 
+import { HttpError } from './core/http/error'
 import App from './App.vue'
 import router from './router'
 import setup from './setup'
@@ -10,7 +11,6 @@ import scroll from './directives/scroll'
 import './styles/main.scss'
 import 'vant/lib/index.css'
 import 'virtual:uno.css'
-import { HttpError } from './core/http/error'
 
 const app = createApp(App)
 
