@@ -1,10 +1,43 @@
-import axios from 'axios'
-import { handleBusinessError, handleRejection } from './interceptors'
+import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios'
+import { captureBusinessError, handleRejection } from './interceptors'
 
-const http = axios.create({
-  baseURL: import.meta.env.VITE_ENDPOINT,
+class HttpClient {
+  constructor(private readonly client: AxiosInstance) {}
+
+  async get<T = any>(url: string, config?: AxiosRequestConfig<any>) {
+    return this.client.get<T>(url, config).then((res) => res.data)
+  }
+
+  async post<T = any>(url: string, data?: any, config?: AxiosRequestConfig<any>) {
+    return this.client.post<T>(url, data, config).then((res) => res.data)
+  }
+
+  async put<T = any>(url: string, data?: any, config?: AxiosRequestConfig<any>) {
+    return this.client.put<T>(url, data, config).then((res) => res.data)
+  }
+
+  async delete<T = any>(url: string, config?: AxiosRequestConfig<any>) {
+    return this.client.delete<T>(url, config).then((res) => res.data)
+  }
+
+  async request(method: string, url: string, config?: AxiosRequestConfig<any>) {
+    return this.client
+      .request({
+        method,
+        url,
+        ...config,
+      })
+      .then((res) => res.data)
+  }
+}
+
+export const axiosInstance = axios.create({
+  baseURL: import.meta.env.VITE_API_PREFIX,
 })
 
-http.interceptors.response.use(handleBusinessError, handleRejection)
+axiosInstance.interceptors.response.use(captureBusinessError, handleRejection)
 
-export default http
+export default new HttpClient(axiosInstance)
+export type { HttpResponse } from './types'
+export { HttpError } from './error'
+export { HttpErrorStream } from './event'

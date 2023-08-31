@@ -4,7 +4,8 @@ import ErrorBoundary from './features/errors/ErrorBoundary.vue'
 
 <template>
   <van-config-provider class="h-full">
-    <router-view />
-    <error-boundary />
+    <error-boundary>
+      <router-view />
+    </error-boundary>
   </van-config-provider>
 </template>

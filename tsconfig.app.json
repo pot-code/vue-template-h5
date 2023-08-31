@@ -1,5 +1,5 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
     "*.d.ts",
     "src/**/*",
@@ -10,8 +10,6 @@
     "src/**/__tests__/*"
   ],
   "compilerOptions": {
-    "verbatimModuleSyntax": true,
-    "ignoreDeprecations": "5.0",
     "composite": true,
     "baseUrl": ".",
     "paths": {

@@ -10,6 +10,7 @@ import scroll from './directives/scroll'
 import './styles/main.scss'
 import 'vant/lib/index.css'
 import 'virtual:uno.css'
+import { HttpError } from './core/http/error'
 
 const app = createApp(App)
 
@@ -19,6 +20,12 @@ app.use(VueQueryPlugin, {
     defaultOptions: {
       queries: {
         refetchOnWindowFocus: false,
+        retry(failureCount, error) {
+          if (error instanceof HttpError && [401, 403, 500].indexOf(error.code) > -1) {
+            return false
+          }
+          return failureCount < 3
+        },
       },
     },
   },

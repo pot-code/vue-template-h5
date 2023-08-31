@@ -10,7 +10,7 @@ export default function useAuth() {
     isLoading: isLoggingIn,
     isSuccess: isLoginSuccess,
   } = useMutation(authApi.login, {
-    onSuccess({ data: { data } }) {
+    onSuccess({ data }) {
       if (data) {
         setToken(data.token)
       }

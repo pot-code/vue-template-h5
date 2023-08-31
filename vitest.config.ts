@@ -1,5 +1,5 @@
-import { mergeConfig } from 'vite'
-import { defineConfig } from 'vitest/config'
+import { fileURLToPath } from 'node:url'
+import { mergeConfig, defineConfig, configDefaults } from 'vitest/config'
 import viteConfig from './vite.config'
 
 export default mergeConfig(
@@ -7,9 +7,10 @@ export default mergeConfig(
   defineConfig({
     test: {
       environment: 'jsdom',
-      include: ['src/**/*.test.{js,ts,jsx,tsx}'],
-      passWithNoTests: true,
+      exclude: [...configDefaults.exclude, 'e2e/*'],
+      root: fileURLToPath(new URL('./', import.meta.url)),
       globals: true,
+      passWithNoTests: true,
     },
-  })
+  }),
 )

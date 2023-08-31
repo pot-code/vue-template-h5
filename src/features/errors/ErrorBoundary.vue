@@ -4,4 +4,6 @@ import useErrorHandling from './useErrorHandling'
 useErrorHandling()
 </script>
 
-<template>{{}}</template>
+<template>
+  <slot />
+</template>

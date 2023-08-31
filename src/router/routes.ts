@@ -2,6 +2,7 @@ import HomeViewVue from '@/views/HomeView.vue'
 import LoginViewVue from '@/views/LoginView.vue'
 import TabLayout from '@/layouts/TabLayout.vue'
 import type { RouteRecordRaw } from 'vue-router'
+import SubLayout from '@/layouts/SubLayout.vue'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -57,12 +58,21 @@ export const subs: RouteRecordRaw[] = []
 
 export const routes: RouteRecordRaw[] = [
   {
+    path: '/',
+    redirect: { name: 'home' },
+  },
+  {
     path: '/tab',
     component: TabLayout,
     meta: {
       requireAuth: true,
     },
     children: tabs,
+  },
+  {
+    path: '/sub',
+    component: SubLayout,
+    children: subs,
   },
   {
     path: '/login',

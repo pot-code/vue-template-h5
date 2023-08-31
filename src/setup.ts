@@ -1,4 +1,4 @@
-import http from './core/http'
+import { axiosInstance } from './core/http'
 import useTokenStore from './store/useTokenStore'
 
 export default async function setup() {
@@ -19,7 +19,7 @@ async function loadTokenFromCache() {
 }
 
 async function configHttpClient() {
-  http.interceptors.request.use((config) => {
+  axiosInstance.interceptors.request.use((config) => {
     const { token } = useTokenStore()
     if (token) {
       config.headers.setAuthorization(`Bearer ${token}`)
