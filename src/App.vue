@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ErrorBoundary from './features/errors/ErrorBoundary.vue'
+import ErrorBoundary from './errors/ErrorBoundary.vue'
 </script>
 
 <template>

@@ -1,5 +1,5 @@
-import HomeViewVue from '@/views/HomeView.vue'
-import LoginViewVue from '@/views/LoginView.vue'
+import HomeView from '@/views/home.vue'
+import LoginView from '@/views/login.vue'
 import TabLayout from '@/layouts/TabLayout.vue'
 import type { RouteRecordRaw } from 'vue-router'
 import SubLayout from '@/layouts/SubLayout.vue'
@@ -24,7 +24,7 @@ export const tabs: RouteRecordRaw[] = [
   {
     path: 'home',
     name: 'home',
-    component: HomeViewVue,
+    component: HomeView,
     meta: {
       title: 'Home',
       icon: 'heart',
@@ -34,7 +34,7 @@ export const tabs: RouteRecordRaw[] = [
   {
     path: 'home',
     name: 'home',
-    component: HomeViewVue,
+    component: HomeView,
     meta: {
       title: 'Home',
       icon: 'heart',
@@ -44,7 +44,7 @@ export const tabs: RouteRecordRaw[] = [
   {
     path: 'home',
     name: 'home',
-    component: HomeViewVue,
+    component: HomeView,
     meta: {
       title: 'Home',
       icon: 'heart',
@@ -77,6 +77,6 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'login',
-    component: LoginViewVue,
+    component: LoginView,
   },
 ]
