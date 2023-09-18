@@ -3,7 +3,7 @@ import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 
 import { HttpError } from './core/http/error'
-import App from './App.vue'
+import App from './app.vue'
 import router from './router'
 import setup from './setup'
 import scroll from './directives/scroll'
