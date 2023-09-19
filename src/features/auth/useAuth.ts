@@ -3,36 +3,33 @@ import { useMutation } from '@tanstack/vue-query'
 import { authApi, type LoginPayload } from './api'
 
 export default function useAuth() {
+  const router = useRouter()
   const { token, setToken, clearToken } = useTokenStore()
-  const {
-    mutate: loginMutate,
-    isLoading: isLoggingIn,
-    isSuccess: isLoginSuccess,
-  } = useMutation(authApi.login, {
+  const loginMutate = useMutation(authApi.login, {
     onSuccess({ data }) {
       if (data) {
         setToken(data.token)
+        router.push({ name: 'home' })
       }
     },
   })
-  const { mutate: logoutMutate, isLoading: isLoggingOut } = useMutation(authApi.logout, {
+  const logoutMutate = useMutation(authApi.logout, {
     onSuccess() {
       clearToken()
     },
   })
 
   function login(payload: LoginPayload) {
-    loginMutate(payload)
+    loginMutate.mutate(payload)
   }
 
   function logout() {
-    logoutMutate()
+    logoutMutate.mutate()
   }
 
   return {
-    isLoggingIn,
-    isLoggingOut,
-    isLoginSuccess,
+    isLoggingIn: loginMutate.isLoading,
+    isLoggingOut: logoutMutate.isLoading,
     token,
     login,
     logout,

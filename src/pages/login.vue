@@ -6,16 +6,11 @@ const formData = reactive<LoginPayload>({
   username: '',
   password: '',
 })
-const router = useRouter()
-const { login, isLoggingIn, isLoginSuccess } = useAuth()
+const { login, isLoggingIn } = useAuth()
 
 function onSubmit() {
   login(toRaw(formData))
 }
-
-watch(isLoginSuccess, (v) => {
-  if (v) router.push({ name: 'home' })
-})
 </script>
 
 <template>
