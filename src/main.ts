@@ -9,7 +9,6 @@ import setup from './setup'
 import scroll from './directives/scroll'
 
 import './styles/main.scss'
-import 'vant/lib/index.css'
 import 'virtual:uno.css'
 
 const app = createApp(App)
