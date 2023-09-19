@@ -1,8 +1,21 @@
 <script setup lang="ts">
 import { tabs } from '@/router/routes'
 import { ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { routeToTabItem } from './util'
+import { useRoute, useRouter, type RouteRecordRaw } from 'vue-router'
+
+interface NavTabItem {
+  label: string
+  icon: string
+  route: string
+}
+
+function routeToTabItem(route: RouteRecordRaw): NavTabItem {
+  return {
+    label: route.meta!.label!,
+    route: route.name!.toString(),
+    icon: route.meta!.icon!,
+  }
+}
 
 const tabItems = tabs.map(routeToTabItem)
 

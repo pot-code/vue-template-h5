@@ -1,8 +1,10 @@
-import HomeView from '@/views/home.vue'
-import LoginView from '@/views/login.vue'
-import TabLayout from '@/layouts/TabLayout.vue'
+import HomeView from '@/pages/home.vue'
+import MessageView from '@/pages/message.vue'
+import DetailIndexView from '@/pages/details/index.vue'
+import LoginView from '@/pages/login.vue'
+import TabLayout from '@/layouts/tab.vue'
 import type { RouteRecordRaw } from 'vue-router'
-import SubLayout from '@/layouts/SubLayout.vue'
+import DefaultLayout from '@/layouts/default.vue'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -11,7 +13,7 @@ declare module 'vue-router' {
     /** 是否在导航栏显示返回按钮 */
     backwards?: boolean
     /** tab 标题 */
-    tab?: string
+    label?: string
     /** tab 图标 */
     icon?: string
     /** 是否需要登录 */
@@ -27,34 +29,21 @@ export const tabs: RouteRecordRaw[] = [
     component: HomeView,
     meta: {
       title: 'Home',
-      icon: 'heart',
-      tab: 'made',
+      icon: 'home',
+      label: 'Home',
     },
   },
   {
-    path: 'home',
-    name: 'home',
-    component: HomeView,
+    path: 'message',
+    name: 'message',
+    component: MessageView,
     meta: {
-      title: 'Home',
-      icon: 'heart',
-      tab: 'with',
-    },
-  },
-  {
-    path: 'home',
-    name: 'home',
-    component: HomeView,
-    meta: {
-      title: 'Home',
-      icon: 'heart',
-      tab: 'love',
+      title: 'Message',
+      icon: 'message',
+      label: 'Message',
     },
   },
 ]
-
-// 子视图
-export const subs: RouteRecordRaw[] = []
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -70,9 +59,19 @@ export const routes: RouteRecordRaw[] = [
     children: tabs,
   },
   {
-    path: '/sub',
-    component: SubLayout,
-    children: subs,
+    path: '/detail',
+    component: DefaultLayout,
+    children: [
+      {
+        path: '',
+        name: 'detail',
+        component: DetailIndexView,
+        meta: {
+          title: 'Secret',
+          backwards: true,
+        },
+      },
+    ],
   },
   {
     path: '/login',
