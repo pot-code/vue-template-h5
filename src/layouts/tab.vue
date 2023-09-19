@@ -35,7 +35,7 @@ const activeRoute = ref(route.name?.toString())
     <van-tabbar-item v-for="item in tabItems" :key="item.label" :name="item.route" :to="{ name: item.route }">
       {{ item.label }}
       <template #icon="{ active }">
-        <local-icon :name="`${item.icon}${active ? '-active' : ''}`" />
+        <svg-icon :name="`${item.icon}${active ? '-active' : ''}`" />
       </template>
     </van-tabbar-item>
   </van-tabbar>
