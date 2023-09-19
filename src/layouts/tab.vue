@@ -26,11 +26,11 @@ const activeRoute = ref(route.name?.toString())
 
 <template>
   <van-nav-bar fixed :left-arrow="route.meta.backwards" :title="route.meta.title" @click-left="router.back()" />
-  <div class="tab-view-container">
-    <div class="view">
+  <safe-area top bottom>
+    <div class="h-full overflow-auto">
       <router-view />
     </div>
-  </div>
+  </safe-area>
   <van-tabbar v-model="activeRoute">
     <van-tabbar-item v-for="item in tabItems" :key="item.label" :name="item.route" :to="{ name: item.route }">
       {{ item.label }}

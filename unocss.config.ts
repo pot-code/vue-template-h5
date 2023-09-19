@@ -12,6 +12,7 @@ export default defineConfig({
       success: 'var(--van-success-color)',
       warning: 'var(--van-warning-color)',
       danger: 'var(--van-danger-color)',
+      background: 'var(--van-background)',
     },
   },
 })

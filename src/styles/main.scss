@@ -1,5 +1,3 @@
-@use 'layout';
-
 html {
   // 配合 postcss 设置
   // 100vw 对应设计稿 375PX，即 100vw = 375PX => 10vw = 37.5PX
@@ -9,8 +7,8 @@ html {
 html,
 body,
 #app {
-  height: 100%;
   user-select: none;
+  will-change: transform;
 }
 
 * {

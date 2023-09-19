@@ -7,9 +7,9 @@ const router = useRouter()
 
 <template>
   <van-nav-bar fixed :left-arrow="route.meta.backwards" :title="route.meta.title" @click-left="router.back()" />
-  <div class="sub-view-container">
-    <div class="view">
+  <safe-area top>
+    <div class="h-full overflow-auto">
       <router-view />
     </div>
-  </div>
+  </safe-area>
 </template>
