@@ -27,8 +27,12 @@ const activeRoute = ref(route.name?.toString())
 <template>
   <van-nav-bar fixed :left-arrow="route.meta.backwards" :title="route.meta.title" @click-left="router.back()" />
   <safe-area top bottom>
-    <div class="h-full overflow-auto">
-      <router-view />
+    <div class="h-full">
+      <router-view v-slot="{ Component }">
+        <transition name="fade">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </div>
   </safe-area>
   <van-tabbar v-model="activeRoute">
