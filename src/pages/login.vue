@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { LoginPayload } from '@/features/auth/types'
+import type { LoginPayload } from '@/features/auth/api'
 import useAuth from '@/features/auth/useAuth'
 
 const formData = reactive<LoginPayload>({
