@@ -2,13 +2,13 @@ import { fileURLToPath, URL } from 'node:url'
 import path from 'node:path'
 import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
-import VueJsx from '@vitejs/plugin-vue-jsx'
+import jsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
-import UnoCSS from 'unocss/vite'
+import uno from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
-import SvgLoader from 'vite-svg-loader'
+import svg from 'vite-svg-loader'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 import { defineConfig } from 'vite'
 import { viteVConsole } from 'vite-plugin-vconsole'
@@ -22,8 +22,8 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    VueJsx(),
-    UnoCSS(),
+    jsx(),
+    uno(),
     Components({
       resolvers: [VantResolver(), IconsResolver()],
     }),
@@ -46,7 +46,7 @@ export default defineConfig({
       scale: 1,
       defaultClass: 'icon',
     }),
-    SvgLoader({
+    svg({
       svgoConfig: {
         plugins: [
           {

@@ -1,11 +1,9 @@
-import { defineConfig } from 'unocss'
-import PresetMini from '@unocss/preset-mini'
+import { defineConfig, presetMini, transformerDirectives } from 'unocss'
 import PresetRemToPx from '@unocss/preset-rem-to-px'
-import Directives from '@unocss/transformer-directives'
 
 export default defineConfig({
-  presets: [PresetMini(), PresetRemToPx()],
-  transformers: [Directives()],
+  presets: [presetMini(), PresetRemToPx()],
+  transformers: [transformerDirectives()],
   theme: {
     colors: {
       primary: 'var(--van-primary-color)',

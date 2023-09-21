@@ -13,7 +13,6 @@ export default function useErrorHandling() {
       HttpErrorStream.subscribe((err) => {
         if (err.code === 401) {
           clearToken()
-          router.push({ name: 'login' })
         }
         showNotify({
           message: err.message,
