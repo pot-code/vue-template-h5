@@ -11,7 +11,7 @@ import Components from 'unplugin-vue-components/vite'
 import svg from 'vite-svg-loader'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 import { defineConfig } from 'vite'
-import { viteVConsole } from 'vite-plugin-vconsole'
+import { viteVConsole as vconsole } from 'vite-plugin-vconsole'
 
 const buildTarget = ['Chrome 64']
 
@@ -38,7 +38,7 @@ export default defineConfig({
     legacy({
       targets: buildTarget,
     }),
-    viteVConsole({
+    vconsole({
       entry: path.resolve('src/main.ts'), // or you can use entry: [path.resolve('src/main.ts')]
       enabled: false,
     }),
