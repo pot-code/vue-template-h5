@@ -1,6 +1,6 @@
-import { rest } from 'msw'
+import { RestHandler, rest } from 'msw'
 
-export const handlers = [
+export const handlers: RestHandler[] = [
   rest.post('/mock/auth/login', (_, res, ctx) =>
     res(
       ctx.delay(500),

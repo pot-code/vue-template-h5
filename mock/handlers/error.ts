@@ -1,6 +1,6 @@
-import { rest } from 'msw'
+import { RestHandler, rest } from 'msw'
 
-export const handlers = [
+export const handlers: RestHandler[] = [
   rest.get('/mock/error', (_, res, ctx) =>
     res(
       ctx.delay(500),

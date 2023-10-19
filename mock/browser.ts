@@ -1,6 +1,6 @@
-import { setupWorker } from 'msw'
+import { setupWorker, type SetupWorker } from 'msw'
 
-export async function createWorker() {
+export async function createWorker(): Promise<SetupWorker> {
   const exportHandlers: any[] = []
   const modules = import.meta.glob('./handlers/**/*.ts', { eager: true })
 
