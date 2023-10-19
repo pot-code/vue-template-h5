@@ -1,10 +1,11 @@
+import type { RouteRecordRaw } from 'vue-router'
+import TabLayout from '@/layouts/tab.vue'
+import DefaultLayout from '@/layouts/default.vue'
 import HomeView from '@/pages/home.vue'
 import MessageView from '@/pages/message.vue'
 import DetailIndexView from '@/pages/details/index.vue'
 import LoginView from '@/pages/login.vue'
-import TabLayout from '@/layouts/tab.vue'
-import type { RouteRecordRaw } from 'vue-router'
-import DefaultLayout from '@/layouts/default.vue'
+import NotFoundError from '@/pages/errors/404.vue'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -77,5 +78,9 @@ export const routes: RouteRecordRaw[] = [
     path: '/login',
     name: 'login',
     component: LoginView,
+  },
+  {
+    path: '/:catchAll(.*)',
+    component: NotFoundError,
   },
 ]
