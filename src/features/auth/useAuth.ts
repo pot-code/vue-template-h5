@@ -15,6 +15,12 @@ export default function useAuth() {
       }
     },
   })
+  const logoutMutate = useMutation({
+    mutationFn: authApi.logout,
+    onSuccess() {
+      clearToken()
+    },
+  })
 
   function login(payload: LoginPayload) {
     loginMutate.mutate(payload)
@@ -26,6 +32,7 @@ export default function useAuth() {
 
   return {
     isLoggingIn: loginMutate.isPending,
+    isLoggingOut: logoutMutate.isPending,
     token,
     login,
     logout,
