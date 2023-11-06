@@ -4,6 +4,6 @@ import graph from '@/assets/images/404.svg'
 
 <template>
   <div class="h-screen flex flex-col items-center justify-center">
-    <graph />
+    <graph class="w-[240px] h-[240px]" />
   </div>
 </template>
