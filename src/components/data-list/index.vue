@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import useLoadMore from '@/hooks/useLoadMore'
 import useRefresh from '@/hooks/useRefresh'
-import { isEmpty } from 'lodash-es'
+import { isNil } from 'remeda'
 
 const PAGE_BOTTOM_TEXT = '-已经到底了-'
 
@@ -27,7 +27,7 @@ const props = withDefaults(
 const { loadMore } = useLoadMore(toRef(props, 'loading'), onLoadMore)
 const { refresh } = useRefresh(toRef(props, 'refreshing'), onRefresh)
 const finished = computed(() => !props.loading && !props.hasMore)
-const noData = computed(() => isEmpty(props.data) && !loadMore.value)
+const noData = computed(() => isNil(props.data) && !loadMore.value)
 
 defineExpose({
   list: listRef,
