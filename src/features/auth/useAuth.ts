@@ -1,4 +1,4 @@
-import useTokenStore from '@/store/useTokenStore'
+import useTokenStore from '@/features/auth/useTokenStore'
 import { useMutation } from '@tanstack/vue-query'
 import useAuthApi, { type LoginPayload } from './api'
 

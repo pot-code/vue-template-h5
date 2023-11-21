@@ -1,4 +1,4 @@
-import useTokenStore from './store/useTokenStore'
+import useTokenStore from './features/auth/useTokenStore'
 
 export default async function setup() {
   await installMockService()
