@@ -1,9 +1,10 @@
 import useTokenStore from '@/store/useTokenStore'
 import { useMutation } from '@tanstack/vue-query'
-import { authApi, type LoginPayload } from './api'
+import useAuthApi, { type LoginPayload } from './api'
 
 export default function useAuth() {
   const router = useRouter()
+  const authApi = useAuthApi()
   const { token, setToken, clearToken } = useTokenStore()
   const loginMutate = useMutation({
     mutationFn: authApi.login,
