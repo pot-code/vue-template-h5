@@ -1,11 +1,11 @@
 import type { HttpResponse } from '@/core/http'
-import useHttpClient from '@/hooks/useHttpClient'
+import { useHttpClient } from '@/hooks/useHttpClient'
 
 export default function useAuthApi() {
-  const { client } = useHttpClient()
+  const client = useHttpClient()
   return {
-    login(payload: LoginPayload) {
-      return client.post<HttpResponse<UserLoginData>>('/auth/login', payload)
+    login(data: LoginPayload) {
+      return client.post<HttpResponse<UserLoginData>>('/auth/login', { data })
     },
     logout() {
       return client.post('/auth/logout')

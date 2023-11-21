@@ -1,9 +1,16 @@
 <script setup lang="ts">
+import { useAuthorizedHttpClient } from '@/hooks/useHttpClient'
 import { showDialog } from 'vant'
+
+const client = useAuthorizedHttpClient()
 
 function onClick() {
   showDialog({ message: 'it works!' })
 }
+
+onMounted(() => {
+  client.get('/home')
+})
 </script>
 
 <template>
