@@ -5,17 +5,13 @@ import { authApi, type LoginPayload } from './api'
 export default function useAuth() {
   const router = useRouter()
   const { token, setToken, clearToken } = useTokenStore()
-  const loginMutate = useMutation(authApi.login, {
+  const loginMutate = useMutation({
+    mutationFn: authApi.login,
     onSuccess({ data }) {
       if (data) {
         setToken(data.token)
         router.push({ name: 'home' })
       }
-    },
-  })
-  const logoutMutate = useMutation(authApi.logout, {
-    onSuccess() {
-      clearToken()
     },
   })
 
@@ -24,12 +20,11 @@ export default function useAuth() {
   }
 
   function logout() {
-    logoutMutate.mutate()
+    clearToken()
   }
 
   return {
-    isLoggingIn: loginMutate.isLoading,
-    isLoggingOut: logoutMutate.isLoading,
+    isLoggingIn: loginMutate.isPending,
     token,
     login,
     logout,
