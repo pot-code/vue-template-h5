@@ -23,7 +23,7 @@ function onSubmit() {
         :rules="[{ required: true, message: '用户名必填' }]"
       >
         <template #left-icon>
-          <local-icon name="username" />
+          <svg-icon name="username" />
         </template>
       </van-field>
       <van-field
@@ -34,7 +34,7 @@ function onSubmit() {
         :rules="[{ required: true, message: '密码必填' }]"
       >
         <template #left-icon>
-          <local-icon name="password" />
+          <svg-icon name="password" />
         </template>
       </van-field>
       <div class="p-6">

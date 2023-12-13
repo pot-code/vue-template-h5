@@ -44,7 +44,6 @@ export default defineConfig({
     }),
     Icons({
       scale: 1,
-      defaultClass: 'icon',
     }),
     svg({
       svgoConfig: {
