@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     // target: buildTarget,
     terserOptions: {
-      compress: {
+      compress: mode === 'production' && {
         drop_console: true,
         drop_debugger: true,
       },
