@@ -1,6 +1,6 @@
 import { LocalStorage } from '@/core/storage/browser'
 import TokenCache from '@/core/token/cache'
-import { isNil } from 'remeda'
+import { isNil } from 'lodash-es'
 import { defineStore } from 'pinia'
 
 const tokenCache = new TokenCache('app-token', new LocalStorage())
