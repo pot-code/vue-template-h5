@@ -2,7 +2,7 @@
 import { formatToYMD } from '@/utils/date'
 import type { FieldRule } from 'vant'
 import dayjs from 'dayjs'
-import { isEmpty, isNil } from 'remeda'
+import { isEmpty, isNil } from 'lodash-es'
 
 const MIN_DATE = dayjs('2000-01-01').toDate()
 

@@ -3,7 +3,7 @@ import NotFoundError from '@/pages/errors/404.vue'
 import LoginView from '@/pages/login.vue'
 import type { RouteRecordRaw } from 'vue-router'
 import tab from './tab'
-import { values } from 'remeda'
+import { values } from 'lodash-es'
 
 const modules = values(import.meta.glob<{ default: RouteRecordRaw }>('./modules/*.ts', { eager: true })).map(
   (v) => v.default,

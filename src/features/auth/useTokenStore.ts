@@ -1,4 +1,4 @@
-import { isEmpty } from 'remeda'
+import { isEmpty } from 'lodash-es'
 import { defineStore } from 'pinia'
 import { LocalCache, BrowserLocalStorage } from '@/core/cache'
 
