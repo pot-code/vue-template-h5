@@ -1,11 +1,13 @@
-import type { RouteRecordRaw } from 'vue-router'
 import TabLayout from '@/layouts/tab.vue'
-import DefaultLayout from '@/layouts/default.vue'
-import HomeView from '@/pages/home.vue'
-import MessageView from '@/pages/message.vue'
-import DetailIndexView from '@/pages/details/index.vue'
-import LoginView from '@/pages/login.vue'
 import NotFoundError from '@/pages/errors/404.vue'
+import LoginView from '@/pages/login.vue'
+import type { RouteRecordRaw } from 'vue-router'
+import tab from './tab'
+import { values } from 'remeda'
+
+const modules = values(import.meta.glob<{ default: RouteRecordRaw }>('./modules/*.ts', { eager: true })).map(
+  (v) => v.default,
+)
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -22,30 +24,6 @@ declare module 'vue-router' {
   }
 }
 
-// 页签视图
-export const tabs: RouteRecordRaw[] = [
-  {
-    path: 'home',
-    name: 'home',
-    component: HomeView,
-    meta: {
-      title: 'Home',
-      icon: 'home',
-      label: 'Home',
-    },
-  },
-  {
-    path: 'message',
-    name: 'message',
-    component: MessageView,
-    meta: {
-      title: 'Message',
-      icon: 'message',
-      label: 'Message',
-    },
-  },
-]
-
 export const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -55,30 +33,16 @@ export const routes: RouteRecordRaw[] = [
     path: '/tab',
     component: TabLayout,
     meta: {
-      requireAuth: true,
+      requireAuth: false,
     },
-    children: tabs,
-  },
-  {
-    path: '/detail',
-    component: DefaultLayout,
-    children: [
-      {
-        path: '',
-        name: 'detail',
-        component: DetailIndexView,
-        meta: {
-          title: 'Secret',
-          backwards: true,
-        },
-      },
-    ],
+    children: tab,
   },
   {
     path: '/login',
     name: 'login',
     component: LoginView,
   },
+  ...modules,
   {
     path: '/:catchAll(.*)',
     component: NotFoundError,

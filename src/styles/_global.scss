@@ -1,5 +1,25 @@
-span,
 p,
-label {
-  @apply font-base;
+span {
+  @apply text-base;
+}
+
+html {
+  // 因为 postcss 设置 rootValue=37.5PX，而 100vw = 375PX
+  // 所以 font-size = rootValue = 10vw = 37.5PX，
+  font-size: 10vw;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  user-select: none;
+}
+
+body {
+  @apply bg-gray-100;
+}
+
+* {
+  box-sizing: border-box;
 }

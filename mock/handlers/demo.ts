@@ -1,12 +1,12 @@
-import { http, HttpResponse, type HttpHandler, delay } from 'msw'
+import { HttpHandler, HttpResponse, delay, http } from 'msw'
 
 export const handlers: HttpHandler[] = [
-  http.get('/mock/home', async () => {
+  http.get('/mock/hello', async () => {
     await delay(500)
     return HttpResponse.json({
       code: 200,
       msg: null,
-      data: null,
+      data: 'hello world',
     })
   }),
 ]

@@ -1,38 +1,29 @@
-import { LocalStorage } from '@/core/storage/browser'
-import TokenCache from '@/core/token/cache'
-import { isNil } from 'lodash-es'
+import { isEmpty } from 'remeda'
 import { defineStore } from 'pinia'
+import { LocalCache, BrowserLocalStorage } from '@/core/cache'
 
-const tokenCache = new TokenCache('app-token', new LocalStorage())
+export const tokenCache = new LocalCache('app:auth-token', new BrowserLocalStorage())
 
-export const useTokenStore = defineStore('token', () => {
-  const token = ref<string>()
-  const isAuthenticated = computed(() => !isNil(token.value))
 
-  function setToken(data: string) {
-    token.value = data
-    tokenCache.save(data)
+const useTokenStore = defineStore('token', () => {
+  const token = ref()
+  const isAuthenticated = computed(() => !isEmpty(token.value))
+
+  function setToken(t: string) {
+    tokenCache.set(t)
+    token.value = t
   }
 
-  function clearToken() {
-    token.value = undefined
+  function clear() {
+    token.value = ''
     tokenCache.clear()
   }
 
-  async function loadTokenFromCache() {
-    const cache = await tokenCache.get()
-    if (!isNil(cache)) {
-      setToken(cache)
-    }
+  function loadTokenFromCache() {
+    return tokenCache.get()
   }
 
-  return {
-    isAuthenticated,
-    token,
-    setToken,
-    clearToken,
-    loadTokenFromCache,
-  }
+  return { isAuthenticated, token, clear, setToken, loadTokenFromCache }
 })
 
 export default useTokenStore

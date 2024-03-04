@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { tabs } from '@/router/routes'
+import tab from '@/router/tab'
 import { ref } from 'vue'
 import { useRoute, useRouter, type RouteRecordRaw } from 'vue-router'
 
@@ -17,7 +17,7 @@ function routeToTabItem(route: RouteRecordRaw): NavTabItem {
   }
 }
 
-const tabItems = tabs.map(routeToTabItem)
+const tabItems = tab.map(routeToTabItem)
 
 const route = useRoute()
 const router = useRouter()
@@ -25,7 +25,7 @@ const activeRoute = ref(route.name?.toString())
 </script>
 
 <template>
-  <van-nav-bar fixed :left-arrow="route.meta.backwards" :title="route.meta.title" @click-left="router.back()" />
+  <van-nav-bar fixed :left-arrow="route.meta.backwards" :title="route.meta.title" @click-left="router.back" />
   <safe-area top bottom>
     <div class="h-full">
       <router-view v-slot="{ Component }">

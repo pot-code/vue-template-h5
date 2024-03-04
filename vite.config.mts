@@ -11,6 +11,7 @@ import Components from 'unplugin-vue-components/vite'
 import svg from 'vite-svg-loader'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
 import { defineConfig } from 'vite'
+import { configDefaults } from 'vitest/config'
 import { viteVConsole as vconsole } from 'vite-plugin-vconsole'
 
 // const buildTarget = ['Chrome 64']
@@ -20,10 +21,13 @@ export default defineConfig(({ mode }) => ({
   build: {
     // target: buildTarget,
     terserOptions: {
-      compress: mode === 'production' && {
-        drop_console: true,
-        drop_debugger: true,
-      },
+      compress:
+        mode === 'production'
+          ? {
+              drop_console: true,
+              drop_debugger: true,
+            }
+          : false,
     },
   },
   plugins: [
@@ -70,5 +74,12 @@ export default defineConfig(({ mode }) => ({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
+  },
+  test: {
+    environment: 'jsdom',
+    exclude: [...configDefaults.exclude, 'e2e/*'],
+    root: fileURLToPath(new URL('./', import.meta.url)),
+    globals: true,
+    passWithNoTests: true,
   },
 }))
