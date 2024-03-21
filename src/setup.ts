@@ -8,7 +8,13 @@ export default async function setup() {
 
 async function installMockService() {
   if (import.meta.env.VITE_MOCK_ENABLE === 'true') {
-    return import('../mock/browser').then(({ createWorker }) => createWorker()).then((worker) => worker.start())
+    return import('../mock/browser')
+      .then(({ createWorker }) => createWorker())
+      .then((worker) =>
+        worker.start({
+          onUnhandledRequest: 'bypass',
+        }),
+      )
   }
 }
 
