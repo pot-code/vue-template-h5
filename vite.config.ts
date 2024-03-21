@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 import path from 'node:path'
-// import legacy from '@vitejs/plugin-legacy'
+import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
 import jsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -13,13 +13,14 @@ import { VantResolver } from 'unplugin-vue-components/resolvers'
 import { defineConfig } from 'vite'
 import { configDefaults } from 'vitest/config'
 import { viteVConsole as vconsole } from 'vite-plugin-vconsole'
+import { legacySupport } from './build/env'
 
-// const buildTarget = ['Chrome 64']
+const legacyTarget = ['Chrome 64']
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   build: {
-    // target: buildTarget,
+    target: legacySupport(mode) ? legacyTarget : undefined,
     terserOptions: {
       compress:
         mode === 'production'
@@ -45,9 +46,6 @@ export default defineConfig(({ mode }) => ({
       include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/],
       imports: ['vue', 'vue-router', 'vitest'],
     }),
-    // legacy({
-    //   targets: buildTarget,
-    // }),
     vconsole({
       entry: path.resolve('src/main.ts'), // or you can use entry: [path.resolve('src/main.ts')]
       enabled: mode === 'production',
@@ -69,6 +67,10 @@ export default defineConfig(({ mode }) => ({
         ],
       },
     }),
+    legacySupport(mode) &&
+      legacy({
+        targets: legacyTarget,
+      }),
   ],
   resolve: {
     alias: {
