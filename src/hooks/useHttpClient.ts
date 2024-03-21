@@ -47,12 +47,12 @@ export function useHttpClient() {
 
 export function useAuthorizedHttpClient() {
   const router = useRouter()
-  const { token, clearToken } = useTokenStore()
+  const { token, clear } = useTokenStore()
 
   function onCatch(err: HttpError) {
     showNotify({ type: 'danger', message: err.message })
     if (err.code === 401) {
-      clearToken()
+      clear()
       router.push({ name: 'login' })
     }
   }
