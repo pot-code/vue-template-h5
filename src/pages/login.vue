@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { authApi, type LoginPayload } from '@/api/auth'
-import useTokenStore from '@/features/auth/useTokenStore'
-import { useMutation } from '@tanstack/vue-query'
+import { type LoginPayload } from '@/api/auth'
+import useLogin from '@/features/auth/useLogin'
 
 const formData = reactive<LoginPayload>({
   username: '',
@@ -9,19 +8,12 @@ const formData = reactive<LoginPayload>({
 })
 
 const router = useRouter()
-const { setToken } = useTokenStore()
-const loginMutation = useMutation({
-  mutationFn: authApi.login,
-  onSuccess({ data }) {
-    if (data) {
-      setToken(data.access_token)
-      router.push({ name: 'home' })
-    }
-  },
-})
+const { isPending, login } = useLogin()
 
 function onSubmit(payload: LoginPayload) {
-  loginMutation.mutate(payload)
+  login(payload).then(() => {
+    router.push({ name: 'home' })
+  })
 }
 </script>
 
@@ -50,17 +42,9 @@ function onSubmit(payload: LoginPayload) {
         </template>
       </van-field>
       <div class="p-6">
-        <van-button block round :disabled="loginMutation.isPending.value" type="primary" native-type="submit">
-          登录
-        </van-button>
+        <van-button block round :disabled="isPending" type="primary" native-type="submit"> 登录 </van-button>
       </div>
     </van-form>
   </div>
-  <van-toast
-    :show="loginMutation.isPending.value"
-    forbid-click
-    type="loading"
-    message="登录中..."
-    loading-type="circular"
-  />
+  <van-toast :show="isPending" forbid-click type="loading" message="登录中..." loading-type="circular" />
 </template>

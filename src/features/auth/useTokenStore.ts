@@ -2,8 +2,7 @@ import { isEmpty } from 'lodash-es'
 import { defineStore } from 'pinia'
 import { LocalCache, BrowserLocalStorage } from '@/core/cache'
 
-export const tokenCache = new LocalCache('app:auth-token', new BrowserLocalStorage())
-
+export const tokenCache = new LocalCache<string>('app:auth-token', new BrowserLocalStorage())
 
 const useTokenStore = defineStore('token', () => {
   const token = ref()
@@ -19,8 +18,12 @@ const useTokenStore = defineStore('token', () => {
     tokenCache.clear()
   }
 
-  function loadTokenFromCache() {
-    return tokenCache.get()
+  async function loadTokenFromCache() {
+    const cache = await tokenCache.get()
+    if (cache) {
+      setToken(cache)
+    }
+    return cache
   }
 
   return { isAuthenticated, token, clear, setToken, loadTokenFromCache }
