@@ -1,4 +1,3 @@
-import type { HttpResponse } from '@/core/http'
 import http from '@/core/http'
 
 export const authApi = {

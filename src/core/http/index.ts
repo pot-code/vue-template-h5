@@ -11,4 +11,3 @@ axiosInstance.interceptors.response.use(captureBusinessError, handleRejection)
 export default new HttpClient(axiosInstance)
 export { HttpError } from './error'
 export { HttpErrorStream } from './event'
-export type { HttpResponse } from './types'
