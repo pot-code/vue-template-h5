@@ -26,8 +26,6 @@ coverage
 *.sln
 *.sw?
 
-auto-imports.d.ts
-components.d.ts
 .eslintrc-auto-import.json
 pnpm-lock.yaml
-/public/mockServiceWorker.js
+public/mockServiceWorker.js

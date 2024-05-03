@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { type LoginPayload } from '@/api/auth'
 import useLogin from '@/features/auth/useLogin'
+import type { PostAuthLoginData } from '@/gen/api'
 
-const formData = reactive<LoginPayload>({
+const formData = reactive({
   username: '',
   password: '',
 })
@@ -10,7 +10,7 @@ const formData = reactive<LoginPayload>({
 const router = useRouter()
 const { isPending, login } = useLogin()
 
-function onSubmit(payload: LoginPayload) {
+function onSubmit(payload: PostAuthLoginData) {
   login(payload).then(() => {
     router.push({ name: 'home' })
   })

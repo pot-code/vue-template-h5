@@ -37,6 +37,7 @@ export default defineConfig(({ mode }) => ({
     uno(),
     Components({
       resolvers: [VantResolver(), IconsResolver()],
+      dts: 'src/types/components.d.ts',
     }),
     AutoImport({
       eslintrc: {
@@ -45,6 +46,7 @@ export default defineConfig(({ mode }) => ({
       },
       include: [/\.[tj]sx?$/, /\.vue$/, /\.vue\?vue/],
       imports: ['vue', 'vue-router', 'vitest'],
+      dts: 'src/types/auto-imports.d.ts',
     }),
     vconsole({
       entry: path.resolve('src/main.ts'), // or you can use entry: [path.resolve('src/main.ts')]

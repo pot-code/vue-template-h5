@@ -1,10 +1,5 @@
-import { axiosInstance } from './core/http'
 import useTokenStore from './features/auth/useTokenStore'
-
-export default async function setup() {
-  await installMockService()
-  await configHttpClient()
-}
+import { OpenAPI } from './gen/api'
 
 async function installMockService() {
   if (import.meta.env.VITE_MOCK_ENABLE === 'true') {
@@ -18,12 +13,20 @@ async function installMockService() {
   }
 }
 
-async function configHttpClient() {
-  axiosInstance.interceptors.request.use((config) => {
+async function configOpenApi() {
+  OpenAPI.BASE = import.meta.env.VITE_API_PREFIX
+  OpenAPI.interceptors.request.use((config) => {
     const { token } = useTokenStore()
-    if (token) {
-      config.headers.setAuthorization(`Bearer ${token}`)
-    }
+    if (!token) return config
+
+    if (!config.headers) config.headers = {}
+    config.headers.Authorization = `Bearer ${token}`
     return config
   })
+}
+
+export default async function setup() {
+  await installMockService()
+
+  configOpenApi()
 }

@@ -17,6 +17,7 @@
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "lint": "eslint src/ --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "lint-staged": "lint-staged",
+    "gen:api": "openapi-ts",
     "format": "prettier --write src/"
   },
   "dependencies": {
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.24.3",
+    "@hey-api/openapi-ts": "^0.43.0",
     "@rushstack/eslint-patch": "^1.8.0",
     "@tsconfig/node20": "^20.1.2",
     "@types/jsdom": "^21.1.4",
@@ -78,6 +80,8 @@
     ]
   },
   "msw": {
-    "workerDirectory": "public"
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { helloApi } from '@/api/hello'
+import { DemoService } from '@/gen/api'
 import { useQuery } from '@tanstack/vue-query'
 
 const pickerValue = ref(0)
@@ -9,7 +9,7 @@ const datePickerVisible = ref(false)
 
 const { isPending, data } = useQuery({
   queryKey: ['hello'],
-  queryFn: helloApi.hello,
+  queryFn: DemoService.getHello,
 })
 </script>
 

@@ -1,21 +1,21 @@
-import { authApi, type LoginPayload } from '@/api/auth'
 import router from '@/router'
 import { useMutation } from '@tanstack/vue-query'
 import useTokenStore from './useTokenStore'
+import { AuthService, type PostAuthLoginData } from '@/gen/api'
 
 export default function useLogin() {
   const { setToken } = useTokenStore()
   const loginMutate = useMutation({
-    mutationFn: authApi.login,
+    mutationFn: AuthService.postAuthLogin,
     onSuccess({ data }) {
       if (data) {
-        setToken(data.access_token)
+        setToken(data)
         router.push({ name: 'home' })
       }
     },
   })
 
-  function login(payload: LoginPayload) {
+  function login(payload: PostAuthLoginData) {
     return new Promise((res, rej) => {
       loginMutate.mutate(payload, {
         onSuccess: res,
