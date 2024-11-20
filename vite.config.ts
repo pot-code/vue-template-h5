@@ -10,10 +10,20 @@ import uno from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
 import svg from 'vite-svg-loader'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
+import { VitePWA } from 'vite-plugin-pwa'
 import { configDefaults } from 'vitest/config'
 import { viteVConsole as vconsole } from 'vite-plugin-vconsole'
-import { legacySupport } from './build/env'
+
+function legacySupportEnabled(mode: string) {
+  const envRecords = loadEnv(mode, process.cwd())
+  return envRecords.VITE_LEGACY === 'true'
+}
+
+function pwaSupportEnabled(mode: string) {
+  const envRecords = loadEnv(mode, process.cwd())
+  return envRecords.VITE_PWA_ENABLED === 'true'
+}
 
 const legacyTarget = ['Chrome 64']
 
@@ -27,7 +37,7 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    target: legacySupport(mode) ? legacyTarget : undefined,
+    target: legacySupportEnabled(mode) ? legacyTarget : undefined,
     terserOptions: {
       compress:
         mode === 'production'
@@ -57,7 +67,7 @@ export default defineConfig(({ mode }) => ({
     }),
     vconsole({
       entry: path.resolve('src/main.ts'), // or you can use entry: [path.resolve('src/main.ts')]
-      enabled: mode === 'production',
+      enabled: mode !== 'production',
     }),
     Icons({
       scale: 1,
@@ -76,7 +86,14 @@ export default defineConfig(({ mode }) => ({
         ],
       },
     }),
-    legacySupport(mode) &&
+    pwaSupportEnabled(mode) &&
+      VitePWA({
+        registerType: 'autoUpdate',
+        manifest: {
+          theme_color: '#ffffff',
+        },
+      }),
+    legacySupportEnabled(mode) &&
       legacy({
         targets: legacyTarget,
       }),
