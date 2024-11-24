@@ -19,6 +19,13 @@ const legacyTarget = ['Chrome 64']
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler', // or "modern"
+      },
+    },
+  },
   build: {
     target: legacySupport(mode) ? legacyTarget : undefined,
     terserOptions: {
